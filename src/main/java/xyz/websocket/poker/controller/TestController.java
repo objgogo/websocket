@@ -4,10 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@CrossOrigin("*")
 public class TestController {
     @Autowired
     private SimpMessagingTemplate webSocket;
@@ -15,7 +17,9 @@ public class TestController {
     @MessageMapping("/sendTo")
     @SendTo("/topics/sendTo")
     public String SendToMessage() throws Exception {
+        System.out.println("ttttt");
         return "SendTo";
+
     }
 
     @MessageMapping("/Template")
